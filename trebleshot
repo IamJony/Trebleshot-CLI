@@ -1,0 +1,57 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo "Uso: $0 <direccion-ip> [directorio-de-descarga]"
+  exit 1
+fi
+
+# Usa el segundo argumento como directorio de descarga si está presente
+if [ -n "$2" ]; then
+  download_dir="$2"
+else
+  download_dir=$(xdg-user-dir DOWNLOAD)
+
+  # Verifica si el comando xdg-user-dir está disponible y pudo obtener el directorio
+  if [ $? -ne 0 ] || [ -z "$download_dir" ]; then
+    echo "No se pudo determinar el directorio de descargas. Usa un segundo argumento para especificarlo."
+    exit 1
+  fi
+fi
+
+# Crear el directorio de descarga si no existe
+mkdir -p "$download_dir"
+
+# Limpia archivos temporales
+rm -f /tmp/index.html /tmp/links.txt /tmp/names.txt
+
+# Descargar la página
+curl -s "http://$1/index.html" > /tmp/index.html
+
+# Extraer los enlaces y sus nombres
+cat /tmp/index.html | pup 'div.card-body a attr{href}' > /tmp/links.txt
+cat /tmp/links.txt | sed 's:.*/::' > /tmp/names.txt
+
+# Usa fzf para seleccionar un nombre
+selected_name=$(cat /tmp/names.txt | fzf --prompt="Trebleshot CLI Downloader by ImJony: ")
+
+# Encuentra el enlace correspondiente al nombre seleccionado
+selected_index=$(grep -n "$selected_name" /tmp/names.txt | cut -d: -f1)
+selected_link=$(sed -n "${selected_index}p" /tmp/links.txt)
+
+# Verifica si se ha seleccionado un enlace
+if [ -z "$selected_link" ]; then
+  clear
+  echo "No se seleccionó ningún enlace"
+  rm -f /tmp/index.html /tmp/links.txt /tmp/names.txt
+  exit 1
+fi
+
+# Descargar el archivo usando wget y que `wget` maneje el nombre del archivo y la extensión
+wget --content-disposition -P "$download_dir" "http://$1$selected_link"
+
+# Limpia archivos temporales
+rm -f /tmp/index.html /tmp/links.txt /tmp/names.txt
+
+# Opción para ejecutar otro comando, como `trebleshot`
+sleep 1
+trebleshot $1
