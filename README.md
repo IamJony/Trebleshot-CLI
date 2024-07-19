@@ -15,7 +15,7 @@ Download the latest version of the script and copy it to /usr/local/bin, then gr
 
 `sudo cp trebleshot /usr/local/bin`
 
-`chmod +x /usr/local/bin/trebleshot`
+`sudo chmod +x /usr/local/bin/trebleshot`
 
 ## Example
 
