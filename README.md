@@ -8,7 +8,7 @@ A simple Bash script for downloading shared files via HTTP using the Trebleshot 
 - `wget`
 - `curl`
 - `fzf`
-- ([Trebleshot mobile app](https://github.com/trebleshot/android))
+- [Trebleshot mobile app](https://github.com/trebleshot/android)
 
 ## Example
 
