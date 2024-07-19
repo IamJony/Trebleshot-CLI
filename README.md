@@ -14,7 +14,7 @@ A simple Bash script for downloading shared files via HTTP using the Trebleshot 
 
 ### Trebleshot Android App
 
-<img src="https://raw.githubusercontent.com/IamJony/semi-nord-theme-bluefish/main/photo_2024-07-19_12-03-52.jpg" width="300" />
+<img src="https://raw.githubusercontent.com/IamJony/semi-nord-theme-bluefish/main/photo_2024-07-19_12-03-52.jpg" width="200" />
 
 ### Command-Line Interface
 
