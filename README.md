@@ -10,6 +10,13 @@ A simple Bash script for downloading shared files via HTTP using the Trebleshot 
 - `fzf`
 - [Trebleshot mobile app](https://github.com/trebleshot/android)
 
+## Install
+Download the latest version of the script and copy it to /usr/local/bin, then grant execute permissions:
+
+`sudo cp trebleshot /usr/local/bin`
+
+`chmod +x /usr/local/bin/trebleshot`
+
 ## Example
 
 ### Trebleshot Android App
