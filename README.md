@@ -28,3 +28,6 @@ Download the latest version of the script and copy it to /usr/local/bin, then gr
 `trebleshot 192.168.43.1:58732`
 
 ![CLI Screenshot](https://raw.githubusercontent.com/IamJony/semi-nord-theme-bluefish/main/Screenshot_2024-07-19-11-51-42_1366x768.png)
+
+#### Upload a file from PC to Android.
+`trebleshot 192.168.43.1:58732 --upload=/home/j/test.txt`
